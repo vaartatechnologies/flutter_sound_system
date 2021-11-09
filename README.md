@@ -10,8 +10,10 @@ Currently only working on Android.
 
 Android:
 ```
-    // Storage permission
-    FlutterSoundSystem.record('path to lovation including file name');
-
+    FlutterSoundSystem.record('File Path');
     String filePath = await FlutterSoundSystem.stopRecording();
+
+    FlutterSoundSystem.play('File Path');
+    FlutterSoundSystem.stopPlaying();
+    FlutterSoundSystem.pausePlaying();
 ```

@@ -1,6 +1,5 @@
 
 import 'dart:async';
-
 import 'package:flutter/services.dart';
 
 class FlutterSoundSystem {
@@ -8,17 +7,26 @@ class FlutterSoundSystem {
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');
-    if(version == null){
-      return '';
-    }
     return version;
   }
 
-  static void record(String audioFileNamedPath) {
-    _channel.invokeMethod('record');
+  static void startRecording(String audioFileNamedPath) {
+    _channel.invokeMethod('startRecording', {"file" : audioFileNamedPath});
   }
 
-  static Future<String> stopRecording() async {
-    return await _channel.invokeMethod('stopRecording');
+  static Future stopRecording() async {
+    await _channel.invokeMethod('stopRecording');
+  }
+
+  static void playMedia(String audioFileNamedPath) {
+    _channel.invokeMethod('playMedia', {"file" : audioFileNamedPath});
+  }
+
+  static void pauseMedia() {
+    _channel.invokeMethod('pauseMedia');
+  }
+
+  static void stopMedia() {
+    _channel.invokeMethod('stopMedia');
   }
 }
